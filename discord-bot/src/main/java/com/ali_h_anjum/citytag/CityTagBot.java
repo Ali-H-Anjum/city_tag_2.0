@@ -9,7 +9,7 @@ import com.ali_h_anjum.citytag.config.*;
 public class CityTagBot {
     public static void main(String[] args) throws InterruptedException {
         System.out.println("City Tag Bot by Ali-H-Anjum Starting...");
-        String token = "MTQzMjcxNTM2ODAxMDM1MDU5Mg.Gzbhb8.3Xdnaso60fvtZyBxXJl3xekV3CbMY9LjGBfm8Q";
+        String token = "TOKEN";
         BotConfig bot = new BotConfig(token);
 
         
