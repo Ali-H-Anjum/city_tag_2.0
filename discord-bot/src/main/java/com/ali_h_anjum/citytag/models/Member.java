@@ -2,14 +2,14 @@ package com.ali_h_anjum.citytag.models;
 
 public class Member {
     private String name;
-    private int id;
+    private String id;
 
-    public Member(int id, String name){
+    public Member(String id, String name){
         this(id);
         this.name = name;
     }
 
-    public Member(int id){
+    public Member(String id){
         this.id = id;
     }
 
@@ -17,7 +17,7 @@ public class Member {
         return name;
     }
 
-    public int getId(){
+    public String getId(){
         return id;
     }
 

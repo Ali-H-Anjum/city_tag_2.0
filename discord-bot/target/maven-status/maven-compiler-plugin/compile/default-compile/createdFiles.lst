@@ -1,1 +1,5 @@
+com\ali_h_anjum\citytag\models\Member.class
+com\ali_h_anjum\citytag\models\SeekerTeam.class
+com\ali_h_anjum\citytag\models\Team.class
 com\ali_h_anjum\citytag\CityTagBot.class
+com\ali_h_anjum\citytag\models\HiderTeam.class
