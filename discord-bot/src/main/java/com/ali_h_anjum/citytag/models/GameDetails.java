@@ -1,46 +1,51 @@
 package com.ali_h_anjum.citytag.models;
 
-public class GameDetails { //Need to fill with all the data, only using for team functionality for now
-    private Team[] teams;
-    private int numTeams;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Optional;
 
-    private Player[] allPlayers;
-    private int numPlayers;
+public class GameDetails {
+    private final List<Team> teams;
+    private final List<Player> players;
 
-    public GameDetails(){
-        teams = new Team[1];
-        numTeams = 0;
-
-        allPlayers = new Player[1];
-        numPlayers = 0;
+    public GameDetails() {
+        this.teams = new ArrayList<>();
+        this.players = new ArrayList<>();
     }
 
-    public void addTeam(Team team){
-        if (numTeams == teams.length) {
-            Team[] tmp = new Team[teams.length * 2];
-            for (int i = 0; i < teams.length; i++){
-                tmp[i] = teams[i];
-            }
-            teams = tmp;
-        }
-        teams[numTeams] = team;
-        numTeams++;
+    // Immutable collections for encapsulation
+    public List<Team> getTeams() {
+        return Collections.unmodifiableList(teams);
     }
 
-    public void addMember(Player member){
-        if (numPlayers == allPlayers.length) {
-            Player[] tmp = new Player[allPlayers.length * 2];
-            for (int i = 0; i < allPlayers.length; i++){
-                tmp[i] = allPlayers[i];
-            }
-            allPlayers = tmp;
-        }
-        allPlayers[numPlayers] = member;
-        numPlayers++;
+    public List<Player> getPlayers() {
+        return Collections.unmodifiableList(players);
     }
 
-    public int getNumPlayers(){
-        return numPlayers;
+    public int getPlayerCount() {
+        return players.size();
     }
-    
+
+    public int getTeamCount() {
+        return teams.size();
+    }
+
+    // Controlled modification
+    public void addPlayer(Player player) {
+        if (player == null) throw new IllegalArgumentException("Player cannot be null");
+        this.players.add(player);
+    }
+
+    public void addTeam(Team team) {
+        if (team == null) throw new IllegalArgumentException("Team cannot be null");
+        this.teams.add(team);
+    }
+
+    // Business logic methods
+    public Optional<Player> findPlayerById(String id) {
+        return players.stream()
+                .filter(player -> player.getId().equals(id))
+                .findFirst();
+    }
 }
