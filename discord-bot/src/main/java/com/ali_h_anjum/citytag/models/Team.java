@@ -4,7 +4,7 @@ public class Team {
     private String teamName;
     private int points;
 
-    private Member[] members;
+    private Player[] members;
     private int numMembers;
 
     //private Challenge[] completedChallenges;
@@ -17,7 +17,7 @@ public class Team {
         this.teamName = teamName;
         points = 20;
 
-        members = new Member[0];
+        members = new Player[0];
         numMembers = 0;
     }
 
@@ -33,7 +33,7 @@ public class Team {
         return isSeeker;
     }
 
-    public Member getMember(int i){
+    public Player getMember(int i){
         return members[i];
     }
 
@@ -53,9 +53,9 @@ public class Team {
         this.isSeeker = isSeeker;
     }
 
-    public void addMember(Member member){
+    public void addMember(Player member){
         if (numMembers == members.length) {
-            Member[] tmp = new Member[members.length * 2];
+            Player[] tmp = new Player[members.length * 2];
             for (int i = 0; i < members.length; i++){
                 tmp[i] = members[i];
             }

@@ -1,13 +1,16 @@
 package com.ali_h_anjum.citytag.config;
 
+import com.ali_h_anjum.citytag.models.GameDetails;
+
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.requests.GatewayIntent;
+import net.dv8tion.jda.api.utils.MemberCachePolicy;
 
 public class BotConfig {
     private JDA jda;
 
-    public BotConfig(String token) throws InterruptedException {
+    public BotConfig(String token, GameDetails gameDetails) throws InterruptedException {
         this.jda = JDABuilder.createDefault(token)
         .enableIntents(
             GatewayIntent.MESSAGE_CONTENT,
@@ -15,11 +18,13 @@ public class BotConfig {
             GatewayIntent.GUILD_MESSAGES
             )
         .addEventListeners(
+            new InitializeBot(gameDetails),
             new MessageListener()
             //new PingCommand(),
             //new JoinTeamCommand()
             //Add all command classes here
         )
+        .setMemberCachePolicy(MemberCachePolicy.ALL)
         .build();
 
         this.jda.awaitReady();

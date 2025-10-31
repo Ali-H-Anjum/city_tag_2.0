@@ -4,14 +4,14 @@ public class GameDetails { //Need to fill with all the data, only using for team
     private Team[] teams;
     private int numTeams;
 
-    private Member[] allPlayers;
+    private Player[] allPlayers;
     private int numPlayers;
 
     public GameDetails(){
-        teams = new Team[0];
+        teams = new Team[1];
         numTeams = 0;
 
-        allPlayers = new Member[0];
+        allPlayers = new Player[1];
         numPlayers = 0;
     }
 
@@ -27,9 +27,9 @@ public class GameDetails { //Need to fill with all the data, only using for team
         numTeams++;
     }
 
-    public void addMember(Member member){
+    public void addMember(Player member){
         if (numPlayers == allPlayers.length) {
-            Member[] tmp = new Member[allPlayers.length * 2];
+            Player[] tmp = new Player[allPlayers.length * 2];
             for (int i = 0; i < allPlayers.length; i++){
                 tmp[i] = allPlayers[i];
             }
@@ -37,6 +37,10 @@ public class GameDetails { //Need to fill with all the data, only using for team
         }
         allPlayers[numPlayers] = member;
         numPlayers++;
+    }
+
+    public int getNumPlayers(){
+        return numPlayers;
     }
     
 }

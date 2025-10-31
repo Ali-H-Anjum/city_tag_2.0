@@ -7,11 +7,17 @@ import com.ali_h_anjum.citytag.models.*;
 import com.ali_h_anjum.citytag.config.*;
 
 public class CityTagBot {
-    public static void main(String[] args) throws InterruptedException {
-        System.out.println("City Tag Bot by Ali-H-Anjum Starting...");
-        String token = "TOKEN";
-        BotConfig bot = new BotConfig(token);
+    private static GameDetails gameDetails;
 
+
+    public static void main(String[] args) throws InterruptedException {
+        gameDetails = new GameDetails();
+
+        System.out.println("City Tag Bot by Ali-H-Anjum Starting...");
+        String token = "";
+        BotConfig bot = new BotConfig(token, gameDetails);
+
+        System.out.println(gameDetails.getNumPlayers());
         
 
 
@@ -37,7 +43,7 @@ public class CityTagBot {
         // System.out.println(team.toString());
 
         //They got the channel id
-        Member[] playerList = allPlayers(); //Everybody in channel is added to a big array of members; might be better as a hashmap
+        Player[] playerList = allPlayers(); //Everybody in channel is added to a big array of members; might be better as a hashmap
 
         //joinTeam command with "teamName" which creates and adds or just adds a member (whoever called the command) to a team
         int indexOfPlayer = 0; // = the member that used the command
@@ -48,7 +54,7 @@ public class CityTagBot {
 
     
 
-    static Member[] allPlayers() {
+    static Player[] allPlayers() {
         //All player ids in the channel are used to create member objects
         //These member objects are added to a matrix of allPlayers
         //returns the matrix
@@ -56,16 +62,16 @@ public class CityTagBot {
         String[] allPlayerIds = {"1050265668018262108", "1050265668018262142", "2050265668018262142", "7542502656680182621"};
         // Placeholder for testing
 
-        Member[] allPlayers = new Member[allPlayerIds.length];
+        Player[] allPlayers = new Player[allPlayerIds.length];
 
         for(int i = 0; i < allPlayerIds.length; i++){
-            allPlayers[i] = new Member(allPlayerIds[i]);  //Creates a member object from their ids and adds them to the array
+            allPlayers[i] = new Player(allPlayerIds[i]);  //Creates a member object from their ids and adds them to the array
         }
 
         return allPlayers;
     }
 
-    static void organizeTeams(Member m){
+    static void organizeTeams(Player m){
         GameDetails info = new GameDetails();
         //if teamName in GameDetails.teams: t1.addMember(m);            See if t1 can be the teamName via this
 

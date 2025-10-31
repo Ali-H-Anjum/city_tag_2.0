@@ -1,15 +1,15 @@
 package com.ali_h_anjum.citytag.models;
 
-public class Member {
+public class Player {
     private String name;
     private String id;
 
-    public Member(String id, String name){
+    public Player(String id, String name){
         this(id);
         this.name = name;
     }
 
-    public Member(String id){
+    public Player(String id){
         this.id = id;
     }
 
